@@ -5,6 +5,9 @@ import about from "@/view/about";
 import home from "@/view/home";
 import not_found from "@/view/not_found";
 
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+
 //配置路由
 const routes = [
     {path: '/', redirect: '/home', name:'index'},
@@ -20,4 +23,4 @@ const router = createRouter({
     routes: routes, // `routes: routes` 的缩写
 });
 
-createApp(App).use(router).mount('#app');
+createApp(App).use(router).use(ElementPlus).mount('#app');
