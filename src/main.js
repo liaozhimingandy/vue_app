@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 import App from './App.vue';
 
 //导入路由
-import router from "@/route";
+import router from "@/router";
 
 //导入element-plus
 import ElementPlus from 'element-plus';
