@@ -2,17 +2,44 @@
     <div class="common-layout">
         <el-container>
             <el-aside width="200px">
-                <h5 class="mb-2">标准样式</h5>
-                <el-menu
-                        default-active="2"
-                        class="el-menu-vertical-demo"
-                        @open="handleOpen"
-                        @close="handleClose"
-                        active-text-color="#ffd04b"
-                        background-color="#545c64"
-                >
-                    菜单区域
-
+                <el-menu default-active="2" class="el-menu-vertical" @open="handleOpen" @close="handleClose">
+                    <el-menu-item>
+                        <el-icon>
+                            <Fold/>
+                        </el-icon>
+                        <span>系统</span>
+                    </el-menu-item>
+                    <el-sub-menu index="1">
+                        <template #title>
+                            <el-icon>
+                                <location/>
+                            </el-icon>
+                            <span>导航一</span>
+                        </template>
+                        <el-menu-item-group title="Group One">
+                            <el-menu-item index="1-1">item one</el-menu-item>
+                            <el-menu-item index="1-2">item one</el-menu-item>
+                        </el-menu-item-group>
+                        <el-menu-item-group title="Group Two">
+                            <el-menu-item index="1-3">item three</el-menu-item>
+                        </el-menu-item-group>
+                        <el-sub-menu index="1-4">
+                            <template #title>item four</template>
+                            <el-menu-item index="1-4-1">item one</el-menu-item>
+                        </el-sub-menu>
+                    </el-sub-menu>
+                    <el-menu-item index="2">
+                        <el-icon>
+                            <icon-menu/>
+                        </el-icon>
+                        <span>Navigator Two</span>
+                    </el-menu-item>
+                    <el-menu-item index="4">
+                        <el-icon>
+                            <setting/>
+                        </el-icon>
+                        <span>Navigator Four</span>
+                    </el-menu-item>
                 </el-menu>
             </el-aside>
             <el-container>
@@ -23,11 +50,34 @@
     </div>
 </template>
 
+<script>
+//组件script
+import { Fold } from "@element-plus/icons";
+import { Edit } from "@element-plus/icons";
+import { Aim } from "@element-plus/icons";
+import { Share } from "@element-plus/icons";
+import { Search } from "@element-plus/icons";
+import { Delete } from "@element-plus/icons";
+export default {
+     components: {
+     Fold,
+     Edit,
+     Aim,
+     Share,
+     Search,
+     Delete,
+     },
+     data() {
+     return {
+     };
+     },
+};
+</script>
+
 <style lang="less" scoped>
 
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
-    min-height: 400px;
-    height: 100vh;
-}
+    /* 设置导航栏高度为页面高度 */
+    .el-menu-vertical {
+        height: 100vh;
+    }
 </style>

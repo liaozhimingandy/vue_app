@@ -21,10 +21,10 @@
         name: 'App',
     }
 </script>
-
 <style>
+/*去除默认的边距*/
     body{
-        bodymargin: 0px;
+        margin: 0px;
         padding: 0px;
     }
     #app {
