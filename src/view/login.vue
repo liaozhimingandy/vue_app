@@ -4,10 +4,9 @@
     <div class="forms-container">
       <div class="signin-signup">
         <!-- 登录 -->
-        <h1>登录</h1>
-<!--        <LoginForm :loginUser="loginUser" :rules="rules" />-->
+        <LoginForm/>
         <!-- 注册 -->
-        <h1>注册</h1>
+        <SignupForm/>
 <!--        <ZhuceForm :zhuceUser="zhuceUser" :zhuceRules="zhuceRules"/>-->
       </div>
     </div>
@@ -17,7 +16,7 @@
         <div class="content">
           <h3>学习是为了有更多的选择，让生活变得更美好!</h3>
           <p>何以解忧，唯有阿康</p>
-          <button @click="sign_mode = !sign_mode" class="btn transparent">登录</button>
+          <button @click="sign_mode = !sign_mode" class="btn transparent">注册</button>
         </div>
         <img src="@/assets/img/register.svg" class="image" alt="">
       </div>
@@ -25,7 +24,7 @@
         <div class="content">
           <h3>一般人都这么想，所以也就是个一般人了</h3>
           <p>何以解忧，唯有阿康</p>
-          <button  @click="sign_mode = !sign_mode" class="btn transparent">注册</button>
+          <button  @click="sign_mode=!sign_mode" class="btn transparent">登录</button>
         </div>
         <img src="@/assets/img/log.svg" class="image" alt="">
       </div>
@@ -34,7 +33,9 @@
 </template>
 
 <script setup>
-  import { ref, reactive  } from 'vue'
+  import { ref } from 'vue'
+  import LoginForm from '../components/LoginForm.vue'
+  import SignupForm from '../components/SignupForm.vue'
   const sign_mode = ref(false) //  登录注册切换动效
 
 </script>
