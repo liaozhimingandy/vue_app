@@ -7,8 +7,7 @@
                         <el-icon>
                             <Fold/>
                         </el-icon>
-                        <span>系统</span>
-                    </el-menu-item>
+                        <span>系统</span></el-menu-item>
                     <el-sub-menu index="1">
                         <template #title>
                             <el-icon>
@@ -32,13 +31,13 @@
                         <el-icon>
                             <icon-menu/>
                         </el-icon>
-                        <span>Navigator Two</span>
+                        <span>导航条</span>
                     </el-menu-item>
                     <el-menu-item index="4">
                         <el-icon>
                             <setting/>
                         </el-icon>
-                        <span>Navigator Four</span>
+                        <span>导航条</span>
                     </el-menu-item>
                 </el-menu>
             </el-aside>

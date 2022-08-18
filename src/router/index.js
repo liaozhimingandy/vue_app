@@ -3,14 +3,14 @@ import {createRouter, createWebHistory } from 'vue-router';
 //配置路由
 import home from "@/view/home";
 import about from "@/view/about";
-import user from "@/view/user"
 
 const routes = [
     {path: '/', redirect: '/home', name:'index'},
     {path: '/home', component: home, name:'home'},
     {path: '/about', component: about, name:'about'},
-    {path: '/user/:id', component: user, name:'user'},
-    // {path: '*', component:not_found},
+    {path: '/user/:id', component: () => import("../view/user.vue"), name:'user'},
+    {path: '/login', component: () => import("../view/login.vue"), name:'login'},
+    {path: '/:catchALL(.*)',  component: () => import("../view/404.vue")},
 ];
 
 //3. 创建路由实例并传递 `routes` 配置。
