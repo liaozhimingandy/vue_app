@@ -10,7 +10,7 @@ const routes = [
     {path: '/about', component: about, name:'about'},
     {path: '/user/:id', component: () => import("../view/user.vue"), name:'user'},
     {path: '/login', component: () => import("../view/login.vue"), name:'login'},
-     {path: '/demo', component: () => import("../components/LoginForm.vue"), name:'demo'},
+     {path: '/demo', component: () => import("../components/SignupForm.vue"), name:'demo'},
     {path: '/:catchALL(.*)',  component: () => import("../view/404.vue")},
 ];
 

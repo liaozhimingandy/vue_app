@@ -4,9 +4,9 @@
     <div class="forms-container">
       <div class="signin-signup">
         <!-- 登录 -->
-        <LoginForm :loginUser="loginUser"/>
+        <LoginForm :user="user" :rules="rules"/>
         <!-- 注册 -->
-<!--         <SignupForm />-->
+         <SignupForm :user="signup_user" :rules="signup_rules"/>
       </div>
     </div>
     <!-- 左右切换动画 -->
@@ -33,48 +33,22 @@
 
 <script setup>
   import {ref, reactive} from 'vue';
+  // 引入自定义组件
   import LoginForm from '../components/LoginForm.vue';
   import SignupForm from '../components/SignupForm.vue';
 
-  // import {loginUser} from '../utils/login_valid';
-  const loginUser = ref({
-    user_id: '',
-    password: ''
-  })
+  import {rules, user} from '../utils/login_valid.ts';
+  import {signup_rules, signup_user} from '../utils/signup_valid.ts';
 
   const sign_mode = ref(false) //  登录注册切换动效
 
 </script>
-<!--<script lang="ts">-->
-<!--import { ref, getCurrentInstance } from "vue";-->
-<!--import { loginUser, rules } from "@/utils/loginValidators";-->
-<!--// import { registerUser, registerRules } from "@/utils/registerValidators";-->
-<!--import LoginForm from "../components/LoginForm";-->
-<!--// import RegisterForm from "@/components/RegisterForm.vue";-->
-<!--export default {-->
-<!--  name: "login",-->
-<!--  components: { LoginForm },-->
-<!--  setup() {-->
-<!--    // @ts-ignore-->
-<!--    const { ctx } = getCurrentInstance();-->
-<!--    const signUpMode = ref<boolean>(false);-->
-
-<!--    return {-->
-<!--      signUpMode,-->
-<!--      loginUser,-->
-<!--      rules,-->
-<!--      // registerUser,-->
-<!--      // registerRules,-->
-<!--    };-->
-<!--  },-->
-<!--};-->
-
 
 <style scoped>
 .container {
   position: relative;
   width: 100%;
-  background-color: #fff;
+  background-color: #E9EBEE;
   min-height: 100vh;
   overflow: hidden;
 }
@@ -414,7 +388,7 @@ form.sign-up-form {
 }
 
 /* register */
-.loginForm,.registerForm {
+.LoginForm,.SignupForm {
   margin-top: 20px;
   background-color: #fff;
   padding: 20px 40px 20px 20px;

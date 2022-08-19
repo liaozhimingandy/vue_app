@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import App from './App.vue';
+import axios from './http.ts';
 
 //导入路由
 import router from "@/router";
@@ -8,5 +9,8 @@ import router from "@/router";
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 
+const app = createApp(App);
+// 全局挂载axios
+app.config.globalProperties.$axios = axios;
 //实例化
-createApp(App).use(router).use(ElementPlus).mount('#app');
+app.use(router).use(ElementPlus).mount('#app');

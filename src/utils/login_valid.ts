@@ -1,58 +1,35 @@
 import { ref } from "vue";
 
-interface User {
-  email: string;
-  password: string;
-}
-
-export const loginUser = ref<User>({
-  email: "",
+export const user = ref({
+  user_id: "",
   password: "",
 });
 
-interface Rules {
-  email: {
-    type: string;
-    message: string;
-    required: boolean;
-    trigger: string;
-  }[];
-  password: ({
-    required: boolean;
-    message: string;
-    trigger: string;
-    min?: undefined;
-    max?: undefined;
-  } | {
-    min: number;
-    max: number;
-    message: string;
-    trigger: string;
-    required?: undefined;
-  })[];
-}
-
 // 校验规则
-export const rules = ref<Rules>({
-  email: [
+export const rules = ref({
+  user_id: [
     {
-      type: "email",
-      message: "Email is incorrect...",
+      message: "登录账号不能为空...",
       required: true,
       trigger: "blur",
-    },
+    },{
+      min: 3,
+      max: 5,
+      message: "用户名理论上不能少于3位数",
+      trigger: "blur",
+    }
   ],
   password: [
     {
       required: true,
-      message: "Password could not be empty...",
+      message: "密码不能为空...",
       trigger: "blur",
     },
     {
       min: 6,
       max: 30,
-      message: "Password's length has to be 6 to 30 characters...",
+      message: "密码长度必须6到30位之间...",
       trigger: "blur",
-    },
+    }
   ],
 });

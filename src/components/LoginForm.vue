@@ -2,19 +2,19 @@
     <el-form
             ref="LoginForm"
             label-width="100px"
-            class="loginForm sign-in-form"
-            :model="loginUser"
+            class="LoginForm sign-in-form"
+            :model="user"
             :rules="rules"
     >
         <h2>登录</h2>
-        <el-form-item label="账号" prop="email">
-            <el-input v-model="loginUser.user_id"
+        <el-form-item label="账号" prop="user_id">
+            <el-input v-model="user.user_id"
                       placeholder="请输入登录账号..."
             ></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
             <el-input
-                    type="password" v-model="loginUser.password"
+                    type="password" v-model="user.password"
                     placeholder="请输入账号对应的密码..."
             ></el-input>
         </el-form-item>
@@ -29,8 +29,12 @@
 </template>
 
 <script setup>
-    import { defineProps,getCurrentInstance,ref } from 'vue'
-
+import {
+  ref,
+  unref,
+    getCurrentInstance
+} from 'vue'
+import {useRouter} from 'vue-router'
     // // 触发登录方法
     // const login = ()=>{
     //     console.log(ctx)
@@ -39,16 +43,47 @@
     //     user_id:'',
     //     password: ''
     // })
+    // @ts-ignore
+    const { proxy } = getCurrentInstance();
+    const router = useRouter()
+    //引用表单
+    const LoginForm = ref(null);
     const props = defineProps({
-        loginUser:{
+        user:{
                 type: Object,
                 required: true
             },
-            // rules:{
-            //     type: Object,
-            //     required: true
-            // }
+        rules:{
+                type: Object,
+                required: true
+            }
         });
+
+    // 触按钮点击事件
+    const login = ()=>{
+        const form = unref(LoginForm);
+        if (!form) return
+        form.validate((valid) => {
+            if (valid) {
+                //请求网络
+                 proxy.$axios.post("/api/v1/auth/login", props.user).then((res)=>{
+                if(res.data.success){
+                      console.log("登录成功");
+                      // 登录成功，存储token到本地存储
+                      // const {token} = res.data;
+                      // localStorage.setItem("lkToken",token)
+                      // 登录成功跳转至首页
+                       router.push('/')
+                }
+                });
+
+
+            }else{
+                console.log("验证无效");
+            }
+        })
+
+    }
 </script>
 
 <style>
