@@ -4,10 +4,9 @@
     <div class="forms-container">
       <div class="signin-signup">
         <!-- 登录 -->
-        <LoginForm/>
+        <LoginForm :loginUser="loginUser"/>
         <!-- 注册 -->
-        <SignupForm/>
-<!--        <ZhuceForm :zhuceUser="zhuceUser" :zhuceRules="zhuceRules"/>-->
+<!--         <SignupForm />-->
       </div>
     </div>
     <!-- 左右切换动画 -->
@@ -16,9 +15,9 @@
         <div class="content">
           <h3>学习是为了有更多的选择，让生活变得更美好!</h3>
           <p>何以解忧，唯有阿康</p>
-          <button @click="sign_mode = !sign_mode" class="btn transparent">注册</button>
+          <button @click="sign_mode =! sign_mode" class="btn transparent">注册</button>
         </div>
-        <img src="@/assets/img/register.svg" class="image" alt="">
+        <img src="@/assets/img/log.svg" class="image" alt="">
       </div>
       <div class="panel right-panel">
         <div class="content">
@@ -26,19 +25,50 @@
           <p>何以解忧，唯有阿康</p>
           <button  @click="sign_mode=!sign_mode" class="btn transparent">登录</button>
         </div>
-        <img src="@/assets/img/log.svg" class="image" alt="">
+        <img src="@/assets/img/register.svg" class="image" alt="">
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-  import { ref } from 'vue'
-  import LoginForm from '../components/LoginForm.vue'
-  import SignupForm from '../components/SignupForm.vue'
+  import {ref, reactive} from 'vue';
+  import LoginForm from '../components/LoginForm.vue';
+  import SignupForm from '../components/SignupForm.vue';
+
+  // import {loginUser} from '../utils/login_valid';
+  const loginUser = ref({
+    user_id: '',
+    password: ''
+  })
+
   const sign_mode = ref(false) //  登录注册切换动效
 
 </script>
+<!--<script lang="ts">-->
+<!--import { ref, getCurrentInstance } from "vue";-->
+<!--import { loginUser, rules } from "@/utils/loginValidators";-->
+<!--// import { registerUser, registerRules } from "@/utils/registerValidators";-->
+<!--import LoginForm from "../components/LoginForm";-->
+<!--// import RegisterForm from "@/components/RegisterForm.vue";-->
+<!--export default {-->
+<!--  name: "login",-->
+<!--  components: { LoginForm },-->
+<!--  setup() {-->
+<!--    // @ts-ignore-->
+<!--    const { ctx } = getCurrentInstance();-->
+<!--    const signUpMode = ref<boolean>(false);-->
+
+<!--    return {-->
+<!--      signUpMode,-->
+<!--      loginUser,-->
+<!--      rules,-->
+<!--      // registerUser,-->
+<!--      // registerRules,-->
+<!--    };-->
+<!--  },-->
+<!--};-->
+
 
 <style scoped>
 .container {
