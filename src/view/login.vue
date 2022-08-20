@@ -6,7 +6,8 @@
         <!-- 登录 -->
         <LoginForm :user="user" :rules="rules"/>
         <!-- 注册 -->
-         <SignupForm :user="signup_user" :rules="signup_rules"/>
+      <!-- todo: 后续完成注册流程-->
+<!--         <SignupForm :user="signup_user" :rules="signup_rules"/>-->
       </div>
     </div>
     <!-- 左右切换动画 -->
@@ -32,7 +33,7 @@
 </template>
 
 <script setup>
-  import {ref, reactive} from 'vue';
+  import {ref} from 'vue';
   // 引入自定义组件
   import LoginForm from '../components/LoginForm.vue';
   import SignupForm from '../components/SignupForm.vue';
@@ -48,7 +49,7 @@
 .container {
   position: relative;
   width: 100%;
-  background-color: #E9EBEE;
+  background-color: #fff;
   min-height: 100vh;
   overflow: hidden;
 }
@@ -399,12 +400,4 @@ form.sign-up-form {
 .submit-btn {
   width: 100%;
 }
-.tiparea {
-  text-align: right;
-  font-size: 12px;
-  color: #333;
-}
-.tiparea p a {
-  color: #409eff;
-}
-</style>
+</style>>

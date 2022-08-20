@@ -22,12 +22,15 @@ axios.interceptors.request.use((config)=>{
     return config
 })
 
-
+// 响应拦截
 axios.interceptors.response.use((response)=>{
   endLoading(); //  结束loading
   return response;
 },error =>{
-  return Promise.reject()  // 错误提醒
+    endLoading(); //  结束loading
+    return Promise.reject()  // 错误提醒
 })
 
+
+axios.defaults.timeout = 1000*6;
 export default axios;

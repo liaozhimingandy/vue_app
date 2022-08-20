@@ -2,12 +2,9 @@
     <div class="common-layout">
         <el-container>
             <el-aside width="200px">
-                <el-menu default-active="2" class="el-menu-vertical" @open="handleOpen" @close="handleClose">
+                <el-menu default-active="2" class="el-menu-vertical">
                     <el-menu-item>
-                        <el-icon>
-                            <Fold/>
-                        </el-icon>
-                        <span>系统</span></el-menu-item>
+                        <span>{{ config.title }}</span></el-menu-item>
                     <el-sub-menu index="1">
                         <template #title>
                             <el-icon>
@@ -42,35 +39,40 @@
                 </el-menu>
             </el-aside>
             <el-container>
-                <el-header>Header</el-header>
+                <!-- 头部 -->
+                <el-header style="text-align: right; font-size: 12px; height: 60px">
+                    <div>
+                    </div>
+                     <div>
+                    </div>
+                     <div>
+                    </div>
+                     <div>
+                    <el-dropdown :hide-on-click="false" trigger="click" @command="onCommand">
+                        <span class="el-dropdown-link">
+                          <el-avatar src="@/assets/img/log.svg"></el-avatar>
+                        </span>
+                        <template #dropdown>
+                            <el-dropdown-menu>
+                                <el-dropdown-item command="userInfo">个人中心</el-dropdown-item>
+                                <el-dropdown-item command="logout">退出</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </template>
+                    </el-dropdown>
+                     </div>
+                </el-header>
                 <el-main>Main</el-main>
             </el-container>
         </el-container>
     </div>
 </template>
 
-<script>
-//组件script
-import { Fold } from "@element-plus/icons";
-import { Edit } from "@element-plus/icons";
-import { Aim } from "@element-plus/icons";
-import { Share } from "@element-plus/icons";
-import { Search } from "@element-plus/icons";
-import { Delete } from "@element-plus/icons";
-export default {
-     components: {
-     Fold,
-     Edit,
-     Aim,
-     Share,
-     Search,
-     Delete,
-     },
-     data() {
-     return {
-     };
-     },
-};
+<script setup>
+    //组件script
+    import {Fold, Setting} from "@element-plus/icons";
+    import config from "@/config";
+
+
 </script>
 
 <style lang="less" scoped>

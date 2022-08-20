@@ -29,14 +29,6 @@
         v-model="user.password2"
       ></el-input>
     </el-form-item>
-
-    <el-form-item label="选择身份">
-      <el-select  placeholder="请选择身份">
-        <el-option label="管理员" value="admin"></el-option>
-        <el-option label="用户" value="user"></el-option>
-        <el-option label="游客" value="visitor"></el-option>
-      </el-select>
-    </el-form-item>
     <el-form-item>
       <el-button
         type="primary"

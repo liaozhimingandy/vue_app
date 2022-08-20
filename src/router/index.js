@@ -26,7 +26,22 @@ router.beforeEach((to, from, next) => {
    // 可以用来判断是否登录
   // if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' })
   // else next()
-    next()
-})
+    // 在localStorage中获取token
+    const token = localStorage.getItem('token');
+    // 判断是否登录
+    if(!token && to.name !== 'login'){
+        //跳转到登录页面
+        // router.push('/login');
+        next()
+    }else if(token && to.name === 'login'){
+        //如果是已经登录,则跳转到首页
+        console.info('已存在登录记录,正在跳转到首页')
+        // router.push('/');
+        next()
+    }else{
+        next();
+    }
+
+});
 
 export default router;

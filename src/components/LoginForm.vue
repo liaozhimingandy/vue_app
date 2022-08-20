@@ -35,14 +35,6 @@ import {
     getCurrentInstance
 } from 'vue'
 import {useRouter} from 'vue-router'
-    // // 触发登录方法
-    // const login = ()=>{
-    //     console.log(ctx)
-    // };
-    // const loginUser = ref({
-    //     user_id:'',
-    //     password: ''
-    // })
     // @ts-ignore
     const { proxy } = getCurrentInstance();
     const router = useRouter()
@@ -66,20 +58,20 @@ import {useRouter} from 'vue-router'
         form.validate((valid) => {
             if (valid) {
                 //请求网络
-                 proxy.$axios.post("/api/v1/auth/login", props.user).then((res)=>{
-                if(res.data.success){
+                 proxy.$axios.get("http://127.0.0.1:4523/mock/513265/pet/2", props.user).then((res)=>{
+                    if(res.data.code == 0){
                       console.log("登录成功");
                       // 登录成功，存储token到本地存储
                       // const {token} = res.data;
-                      // localStorage.setItem("lkToken",token)
+                      localStorage.setItem("token", res.data.code)
                       // 登录成功跳转至首页
                        router.push('/')
                 }
+                }).catch((e)=> {
+                     // alert("失败!");
+                     console.info('登录失败')
+                     console.info(e)
                 });
-
-
-            }else{
-                console.log("验证无效");
             }
         })
 
