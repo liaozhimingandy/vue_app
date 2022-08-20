@@ -34,34 +34,48 @@
                         <el-icon>
                             <setting/>
                         </el-icon>
-                        <span>导航条</span>
+                        <span>系统管理</span>
                     </el-menu-item>
                 </el-menu>
             </el-aside>
             <el-container>
                 <!-- 头部 -->
-                <el-header style="text-align: right; font-size: 12px; height: 60px">
-                    <div>
-                    </div>
-                     <div>
-                    </div>
-                     <div>
-                    </div>
-                     <div>
-                    <el-dropdown :hide-on-click="false" trigger="click" @command="onCommand">
+                <el-header style="height: 50px; background-color: #ffffff;" >
+                    <el-row :gutter="0" :align="bottom" style="height: 100%;  align-items: center;">
+                        <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"
+                        >
+                            开始
+                        </el-col>
+                        <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"
+                        >
+                        </el-col>
+                        <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"
+                        >
+                        </el-col>
+                        <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"
+                        >
+                            <div class="grid-content ep-bg-purple-light"
+                            >
+                                <el-dropdown :hide-on-click="false" trigger="click" @command="onCommand">
                         <span class="el-dropdown-link">
                           <el-avatar src="@/assets/img/log.svg"></el-avatar>
                         </span>
-                        <template #dropdown>
-                            <el-dropdown-menu>
-                                <el-dropdown-item command="userInfo">个人中心</el-dropdown-item>
-                                <el-dropdown-item command="logout">退出</el-dropdown-item>
-                            </el-dropdown-menu>
-                        </template>
-                    </el-dropdown>
-                     </div>
+                                    <template #dropdown>
+                                        <el-dropdown-menu>
+                                            <el-dropdown-item command="userInfo">个人中心</el-dropdown-item>
+                                            <el-dropdown-item command="logout">退出</el-dropdown-item>
+                                        </el-dropdown-menu>
+                                    </template>
+                                </el-dropdown>
+                            </div>
+                        </el-col>
+                    </el-row>
                 </el-header>
-                <el-main>Main</el-main>
+
+                 <el-row style="height: 45px; align-items: center; padding-left: 6px;" >
+                         <el-tag size="large" closable type="success">首页</el-tag>
+                 </el-row>
+                <el-main style="background-color: #ffffff">Main</el-main>
             </el-container>
         </el-container>
     </div>
@@ -80,5 +94,9 @@
     /* 设置导航栏高度为页面高度 */
     .el-menu-vertical {
         height: 100vh;
+    }
+
+    .common-layout {
+        background-color: #E9EBEE;
     }
 </style>
