@@ -1,8 +1,8 @@
 <template>
     <div class="common-layout">
         <el-container>
-            <el-aside width="200px">
-                <el-menu default-active="2" class="el-menu-vertical">
+            <el-aside width="auto">
+                <el-menu default-active="2" class="el-menu-vertical"  :collapse="is_collapse">
                     <el-menu-item>
                         <span>{{ config.title }}</span></el-menu-item>
                     <el-sub-menu index="1">
@@ -38,13 +38,19 @@
                     </el-menu-item>
                 </el-menu>
             </el-aside>
-            <el-container>
+            <el-container style="width: auto">
                 <!-- 头部 -->
                 <el-header style="height: 50px; background-color: #ffffff;" >
-                    <el-row :gutter="0" :align="bottom" style="height: 100%;  align-items: center;">
+                    <el-row :gutter="0" style="height: 100%;  align-items: center;">
                         <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"
                         >
-                            开始
+                            <el-button text bg @click="is_collapse = !is_collapse">
+                                <el-icon size="30px">
+                                    <Expand v-if="is_collapse"/>
+                                    <Fold v-else />
+                                </el-icon>
+                            </el-button>
+
                         </el-col>
                         <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"
                         >
@@ -72,9 +78,7 @@
                     </el-row>
                 </el-header>
 
-                 <el-row style="height: 45px; align-items: center; padding-left: 6px;" >
-                         <el-tag size="large" closable type="success">首页</el-tag>
-                 </el-row>
+                <TopBar />
                 <el-main style="background-color: #ffffff">Main</el-main>
             </el-container>
         </el-container>
@@ -83,8 +87,23 @@
 
 <script setup>
     //组件script
-    import {Fold, Setting} from "@element-plus/icons";
+    import {Fold, Setting, Expand} from "@element-plus/icons";
+    import TopBar from "@/components/TopBar";
     import config from "@/config";
+    import {ref} from 'vue';
+
+
+    import useStore from 'vuex';
+    import { computed } from 'vue';
+
+    const is_collapse = ref(true)
+
+    computed(()=>{
+        console.info(is_collapse)
+    })
+
+
+
 
 
 </script>
@@ -94,6 +113,10 @@
     /* 设置导航栏高度为页面高度 */
     .el-menu-vertical {
         height: 100vh;
+    }
+    .el-menu-vertical:not(.el-menu--collapse) {
+      width: 200px;
+      min-height: 400px;
     }
 
     .common-layout {
