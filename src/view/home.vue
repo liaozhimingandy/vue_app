@@ -2,45 +2,42 @@
     <div class="common-layout">
         <el-container>
             <el-aside width="auto">
-                <el-menu default-active="2" class="el-menu-vertical"  :collapse="is_collapse">
+                <el-menu default-active="2" class="el-menu-vertical" :collapse="is_collapse" router>
                     <el-menu-item>
                         <span>{{ config.title }}</span></el-menu-item>
                     <el-sub-menu index="1">
                         <template #title>
                             <el-icon>
-                                <location/>
+                                <Fold/>
                             </el-icon>
                             <span>导航一</span>
                         </template>
-                        <el-menu-item-group title="Group One">
-                            <el-menu-item index="1-1">item one</el-menu-item>
-                            <el-menu-item index="1-2">item one</el-menu-item>
-                        </el-menu-item-group>
-                        <el-menu-item-group title="Group Two">
-                            <el-menu-item index="1-3">item three</el-menu-item>
-                        </el-menu-item-group>
-                        <el-sub-menu index="1-4">
-                            <template #title>item four</template>
-                            <el-menu-item index="1-4-1">item one</el-menu-item>
-                        </el-sub-menu>
                     </el-sub-menu>
                     <el-menu-item index="2">
-                        <el-icon>
-                            <icon-menu/>
-                        </el-icon>
-                        <span>导航条</span>
+                        <router-link to="/login"><el-icon>
+                                <Fold/>
+                            </el-icon>
+                             </router-link>
+                        <span> <router-link to="/login">导航条</router-link></span>
+
                     </el-menu-item>
-                    <el-menu-item index="4">
-                        <el-icon>
-                            <setting/>
-                        </el-icon>
-                        <span>系统管理</span>
-                    </el-menu-item>
+                    <el-sub-menu index="3">
+                        <template #title>
+                            <el-icon>
+                                <Setting/>
+                            </el-icon>
+                            <span>系统设置</span>
+                        </template>
+                        <el-menu-item-group title="用户">
+                            <el-menu-item index="/login">个人中心</el-menu-item>
+                            <el-menu-item index="1-2">角色管理</el-menu-item>
+                        </el-menu-item-group>
+                    </el-sub-menu>
                 </el-menu>
             </el-aside>
             <el-container style="width: auto">
                 <!-- 头部 -->
-                <el-header style="height: 50px; background-color: #ffffff;" >
+                <el-header style="height: 50px; background-color: #ffffff;">
                     <el-row :gutter="0" style="height: 100%;  align-items: center;">
                         <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"
                         >
@@ -68,7 +65,7 @@
                         </span>
                                     <template #dropdown>
                                         <el-dropdown-menu>
-                                            <el-dropdown-item command="userInfo">个人中心</el-dropdown-item>
+                                            <el-dropdown-item command="userInfo"><route-link>个人中心</route-link></el-dropdown-item>
                                             <el-dropdown-item command="logout">退出</el-dropdown-item>
                                         </el-dropdown-menu>
                                     </template>
@@ -79,7 +76,9 @@
                 </el-header>
 
                 <TopBar />
-                <el-main style="background-color: #ffffff">Main</el-main>
+                <el-main style="background-color: #ffffff" class="el-main">
+                     <router-view></router-view>
+                </el-main>
             </el-container>
         </el-container>
     </div>
@@ -90,19 +89,27 @@
     import {Fold, Setting, Expand} from "@element-plus/icons";
     import TopBar from "@/components/TopBar";
     import config from "@/config";
+    import { useStore } from 'vuex';
     import {ref} from 'vue';
 
-
-    import useStore from 'vuex';
     import { computed } from 'vue';
 
     const is_collapse = ref(true)
+
+    const item = {
+  date: '2016-05-02',
+  name: 'Tom',
+  address: 'No. 189, Grove St, Los Angeles',
+}
+const tableData = ref(Array.from({ length: 20 }).fill(item))
 
     computed(()=>{
         console.info(is_collapse)
     })
 
-
+    const list_menu = computed(()=>{
+        return store
+    });
 
 
 
@@ -117,9 +124,20 @@
     .el-menu-vertical:not(.el-menu--collapse) {
       width: 200px;
       min-height: 400px;
+     height: 100vh;//添加此属性
+
     }
 
     .common-layout {
         background-color: #E9EBEE;
+    }
+
+    .el-main{
+        position: absolute;
+  left: 100px;
+  right: 0;
+  top: 95px;
+  bottom: 0;
+  overflow-y: scroll;
     }
 </style>
