@@ -76,7 +76,7 @@
                 </el-header>
 
                 <TopBar />
-                <el-main style="background-color: #ffffff" class="el-main">
+                <el-main style="background-color: #ffffff;height:0;flex-grow:1;" class="el-main">
                      <router-view></router-view>
                 </el-main>
             </el-container>
@@ -132,12 +132,4 @@ const tableData = ref(Array.from({ length: 20 }).fill(item))
         background-color: #E9EBEE;
     }
 
-    .el-main{
-        position: absolute;
-  left: 100px;
-  right: 0;
-  top: 95px;
-  bottom: 0;
-  overflow-y: scroll;
-    }
 </style>
