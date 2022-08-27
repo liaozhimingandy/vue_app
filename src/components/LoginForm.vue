@@ -21,10 +21,10 @@
         <el-form-item>
             <el-button @click="login('LoginForm')" type="primary" class="submit-btn">提交</el-button>
         </el-form-item>
-        <!-- 找回密码 -->
-        <div class="tiparea">
-            <p>忘记密码？ <a>立即找回</a></p>
-        </div>
+        <!-- todo: 找回密码; -->
+<!--        <div class="tiparea">-->
+<!--            <p>忘记密码？ <a>立即找回</a></p>-->
+<!--        </div>-->
     </el-form>
 </template>
 
@@ -69,8 +69,7 @@ import {useRouter} from 'vue-router'
                 }
                 }).catch((e)=> {
                      // alert("失败!");
-                     console.info('登录失败')
-                     console.info(e)
+                     console.info('联网失败,登录失败')
                 });
             }
         })

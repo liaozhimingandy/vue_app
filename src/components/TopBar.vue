@@ -1,6 +1,7 @@
 <template>
     <el-scrollbar class="process-wrap">
         <div class="scrollbar-flex-content">
+          <h3>{{ name }}</h3>
             <p v-for="e in 50" :key="e" class="scrollbar-item">
                 <el-tag size="large" closable type="success">首页{{e}}</el-tag>
             </p>
@@ -9,10 +10,15 @@
     </el-scrollbar>
 </template>
 
-<script>
-    export default {
-        name: "TopBar"
-    }
+<script setup>
+    import {useStore} from 'vuex';
+    import {computed} from "vue";
+
+    const store = useStore();
+    //使用状态的全局数据
+    const name = computed(() =>{
+      return store.state.name;
+    });
 </script>
 
 <style scoped>

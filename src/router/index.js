@@ -9,7 +9,11 @@ const routes = [
     {path: '/home', component: home, name:'home',
         children:[{path: '/login',
             component: () => import("../view/login.vue"),
-            name:'login'}]},
+            name:'login'},
+            {path: '/menu1',
+            component: () => import("../view/about.vue"),
+            name:'menu1'}]
+    },
     {path: '/about', component: about, name:'about'},
     {path: '/user/:id', component: () => import("../view/user.vue"), name:'user'},
     // {path: '/login', component: () => import("../view/login.vue"), name:'login'},

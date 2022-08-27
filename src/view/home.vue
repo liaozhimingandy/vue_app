@@ -10,27 +10,28 @@
                             <el-icon>
                                 <Fold/>
                             </el-icon>
-                            <span>导航一</span>
+                            <span>首页</span>
                         </template>
                     </el-sub-menu>
-                    <el-menu-item index="2">
-                        <router-link to="/login"><el-icon>
-                                <Fold/>
+                      <el-sub-menu index="2">
+                         <template #title>
+                            <el-icon>
+                                <Setting/>
                             </el-icon>
-                             </router-link>
-                        <span> <router-link to="/login">导航条</router-link></span>
-
-                    </el-menu-item>
+                            <span>监控中心</span>
+                        </template>
+                        <el-menu-item index="/menu1">控制台</el-menu-item>
+                    </el-sub-menu>
                     <el-sub-menu index="3">
                         <template #title>
                             <el-icon>
                                 <Setting/>
                             </el-icon>
-                            <span>系统设置</span>
+                            <span>设置中心</span>
                         </template>
-                        <el-menu-item-group title="用户">
+                        <el-menu-item-group>
                             <el-menu-item index="/login">个人中心</el-menu-item>
-                            <el-menu-item index="1-2">角色管理</el-menu-item>
+                            <el-menu-item index="1-2">系统设置</el-menu-item>
                         </el-menu-item-group>
                     </el-sub-menu>
                 </el-menu>
@@ -75,7 +76,7 @@
                     </el-row>
                 </el-header>
 
-                <TopBar />
+<!--                <TopBar />-->
                 <el-main style="background-color: #ffffff;height:0;flex-grow:1;" class="el-main">
                      <router-view></router-view>
                 </el-main>
@@ -94,22 +95,14 @@
 
     import { computed } from 'vue';
 
-    const is_collapse = ref(true)
-
-    const item = {
-  date: '2016-05-02',
-  name: 'Tom',
-  address: 'No. 189, Grove St, Los Angeles',
-}
-const tableData = ref(Array.from({ length: 20 }).fill(item))
+    // 左侧菜单是否展开
+    const is_collapse = ref(false)
 
     computed(()=>{
         console.info(is_collapse)
     })
 
-    const list_menu = computed(()=>{
-        return store
-    });
+
 
 
 
