@@ -2,7 +2,7 @@
     <div class="common-layout">
         <el-container>
             <el-aside width="auto">
-                <el-menu default-active="2" class="el-menu-vertical" :collapse="is_collapse" router>
+                <el-menu default-active="2" class="el-menu-vertical" :collapse="is_collapse" router select="menu_select()">
                     <el-menu-item>
                         <span>{{ config.title }}</span></el-menu-item>
                     <el-sub-menu index="1">
@@ -67,6 +67,7 @@
                                     <template #dropdown>
                                         <el-dropdown-menu>
                                             <el-dropdown-item command="userInfo"><route-link>个人中心</route-link></el-dropdown-item>
+                                           <el-dropdown-item command="userInfo"><route-link>修改密码</route-link></el-dropdown-item>
                                             <el-dropdown-item command="logout">退出</el-dropdown-item>
                                         </el-dropdown-menu>
                                     </template>
@@ -102,6 +103,10 @@
         console.info(is_collapse)
     })
 
+    // 菜单选择时
+    const menu_select = () => {
+
+    }
 
 
 
@@ -114,6 +119,7 @@
     .el-menu-vertical {
         height: 100vh;
     }
+
     .el-menu-vertical:not(.el-menu--collapse) {
       width: 200px;
       min-height: 400px;
