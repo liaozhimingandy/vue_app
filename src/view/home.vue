@@ -2,9 +2,11 @@
     <div class="common-layout">
         <el-container>
             <el-aside width="auto">
-                <el-menu default-active="2" class="el-menu-vertical" :collapse="is_collapse" router select="menu_select()">
-                    <el-menu-item>
-                        <span>{{ config.title }}</span></el-menu-item>
+                <el-menu default-active="2" class="el-menu-vertical" :collapse="is_collapse" router
+                         @select="menu_select" unique-opened="true">
+                    <div style="font-size: 24px; padding: 5px 0">
+                        <span>{{ config.title }}</span>
+                    </div>
                     <el-sub-menu index="1">
                         <template #title>
                             <el-icon>
@@ -38,7 +40,7 @@
             </el-aside>
             <el-container style="width: auto">
                 <!-- 头部 -->
-                <el-header style="height: 50px; background-color: #ffffff;">
+                <el-header style="height: 50px;">
                     <el-row :gutter="0" style="height: 100%;  align-items: center;">
                         <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"
                         >
@@ -66,9 +68,8 @@
                         </span>
                                     <template #dropdown>
                                         <el-dropdown-menu>
-                                            <el-dropdown-item command="userInfo"><route-link>个人中心</route-link></el-dropdown-item>
-                                           <el-dropdown-item command="userInfo"><route-link>修改密码</route-link></el-dropdown-item>
-                                            <el-dropdown-item command="logout">退出</el-dropdown-item>
+                                           <el-dropdown-item command="userInfo">修改密码</el-dropdown-item>
+                                            <el-dropdown-item command="logout" @click="open1">退出</el-dropdown-item>
                                         </el-dropdown-menu>
                                     </template>
                                 </el-dropdown>
@@ -89,6 +90,7 @@
 <script setup>
     //组件script
     import {Fold, Setting, Expand} from "@element-plus/icons";
+    import { ElNotification } from 'element-plus'
     import TopBar from "@/components/TopBar";
     import config from "@/config";
     import { useStore } from 'vuex';
@@ -104,10 +106,18 @@
     })
 
     // 菜单选择时
-    const menu_select = () => {
-
+    const menu_select = ( index, indexPath) => {
+      console.info(index, indexPath)
     }
 
+   // 退出
+    const open1 = () => {
+      ElNotification({
+        title: 'Success',
+        message: 'This is a success message',
+        type: 'success',
+      })
+}
 
 
 
