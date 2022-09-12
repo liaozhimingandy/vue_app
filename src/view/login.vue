@@ -3,11 +3,13 @@
     <!-- forms表单容器 -->
     <div class="forms-container">
       <div class="signin-signup">
-        <!-- 登录 -->
-        <LoginForm :user="user" :rules="rules"/>
-        <!-- 注册 -->
-      <!-- todo: 后续完成注册流程-->
-<!--         <SignupForm :user="signup_user" :rules="signup_rules"/>-->
+
+          <!-- 登录 -->
+<!--          <component :is="view" :user="user" :rules="rules"></component>-->
+          <LoginForm v-if="!sign_mode" :user="user" :rules="rules"/>
+          <!-- 注册 -->
+          <SignupForm v-if="sign_mode" :user="signup_user" :rules="signup_rules"/>
+
       </div>
     </div>
     <!-- 左右切换动画 -->
@@ -33,7 +35,7 @@
 </template>
 
 <script setup>
-  import {ref} from 'vue';
+import {ref, computed } from 'vue';
   // 引入自定义组件
   import LoginForm from '../components/LoginForm.vue';
   import SignupForm from '../components/SignupForm.vue';
@@ -42,7 +44,9 @@
   import {signup_rules, signup_user} from '../utils/signup_valid.ts';
 
   const sign_mode = ref(false) //  登录注册切换动效
-
+  // const view = computed(()=>{
+  //   return (sign_mode.value === false) ? LoginForm: SignupForm
+  // })
 </script>
 
 <style scoped>

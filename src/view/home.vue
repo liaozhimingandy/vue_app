@@ -32,7 +32,7 @@
                             <span>设置中心</span>
                         </template>
                         <el-menu-item-group>
-                            <el-menu-item index="/login">个人中心</el-menu-item>
+                            <el-menu-item index="/home/tmp-login">个人中心</el-menu-item>
                             <el-menu-item index="1-2">系统设置</el-menu-item>
                         </el-menu-item-group>
                     </el-sub-menu>
@@ -40,11 +40,11 @@
             </el-aside>
             <el-container style="width: auto">
                 <!-- 头部 -->
-                <el-header style="height: 50px;">
+                <el-header style="height: 50px; padding:0px;">
                     <el-row :gutter="0" style="height: 100%;  align-items: center;">
-                        <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"
-                        >
-                            <el-button text bg @click="is_collapse = !is_collapse">
+                        <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1" style="text-align: left; padding-left: 5px"
+                         >
+                            <el-button text bg @click="is_collapse = !is_collapse" style="padding: 0px;">
                                 <el-icon size="30px">
                                     <Expand v-if="is_collapse"/>
                                     <Fold v-else />
